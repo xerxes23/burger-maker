@@ -16,18 +16,11 @@ class BurgerBuilder extends Component {
 
     state = {
         purchasing: false,
-        loading: false,
-        error: false
+        loading: false
     }
 
-    componentDidMount() {
-        /* axios.get('https://react-my-burger-4ac9b.firebaseio.com/ingredients.json')
-            .then( response => {
-                this.setState({ingredients: response.data})
-            })
-            .catch(error => {
-                this.setState({error: true})
-            }) */
+    componentDidMount () {
+        this.props.onInitIngredients();
     }
 
    updatePurchasable = (ingredients) => {
@@ -56,7 +49,7 @@ class BurgerBuilder extends Component {
             disabledInfo[key] = disabledInfo[key] <= 0;
         };
         let orderSummary = null;
-        let burger = this.state.error ? <p>Ingredients could not be loaded</p> : <Spinner/>; 
+        let burger = this.props.error ? <p>Ingredients could not be loaded</p> : <Spinner/>; 
         if (this.props.ingredients) {
             burger = (
                 <Aux>
@@ -94,12 +87,14 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => ({
     ingredients: state.ingredients,
-    price: state.price
+    price: state.price,
+    error: state.error
 });
 
 const mapDispatchToProps = dispatch => ({
     onIngredientAdded: (ingredientType) => dispatch(burgerBuilderActions.addIngredient(ingredientType)),
-    onIngredientRemoved: (ingredientType) => dispatch(burgerBuilderActions.removeIngredient(ingredientType))
+    onIngredientRemoved: (ingredientType) => dispatch(burgerBuilderActions.removeIngredient(ingredientType)),
+    onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, axios));
