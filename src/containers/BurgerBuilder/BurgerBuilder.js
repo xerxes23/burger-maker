@@ -11,12 +11,6 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 import * as actionTypes from '../../store/actions';
 
-const INGREDIENT_PRICES = {
-    salad: .5,
-    bacon: .8,
-    cheese: .5,
-    meat: 1.2
-};
 
 class BurgerBuilder extends Component {
 
@@ -41,36 +35,6 @@ class BurgerBuilder extends Component {
         const sum = Object.values(ingredients)
             .reduce((accumulator, currentValue) => accumulator + currentValue, 0)      
         this.setState({purchasable: sum>0})
-    }
-
-    addIngredientHandler = (type) => {
-        const updatedIngredientCount = this.state.ingredients[type] + 1;
-        const updatedPrice = this.state.price + INGREDIENT_PRICES[type];
-        const ingredients = {
-            ...this.state.ingredients,
-            [type]: updatedIngredientCount,
-        }
-        this.setState({
-            ingredients,
-            price: updatedPrice
-        });
-        this.updatePurchasable(ingredients);
-    } 
-
-    removeIngredientHandler = (type) => {
-        const updatedIngredientCount = this.state.ingredients[type] - 1;
-        const updatedPrice = this.state.price - INGREDIENT_PRICES[type];
-        const ingredients = {
-            ...this.state.ingredients,
-            [type]: updatedIngredientCount,
-        }
-        if (this.state.ingredients[type]!==0) {
-            this.setState({
-                ingredients,
-                price: updatedPrice
-            })
-        }
-        this.updatePurchasable(ingredients);
     }
 
     updatePurchasing = () => {
