@@ -14,13 +14,13 @@
     font: inherit;
     outline: none;
     background-color: white;
-    border: 1px solid white;
+    border: 1px solid rgb(163, 161, 161);
     padding: 6px 10px;
     width: 100%;
     box-sizing: border-box;
 }
 
-.InputElement:focus {
+.InputElement :focus {
     background-color: #ccc;
     font-weight: bold;
     outline: none;
@@ -28,7 +28,6 @@
 
 .Invalid {
     border: 1px solid red;
-    background-color: rgb(247, 173, 165);
 }
 
 .ValidationError {
