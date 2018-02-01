@@ -20,9 +20,14 @@ export const authFail = (error) => ({
     error
 });
 
-export const authLogout = () => ({
-    type: actionTypes.AUTH_LOGOUT
-});
+export const authLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expirationDate');
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    }
+}
+
 
 export const checkAuthTimeout = expirationTime => dispatch => {
     setTimeout(() => dispatch(authLogout()), expirationTime * 1000)
