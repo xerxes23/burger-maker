@@ -6,7 +6,7 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import Backdrop from '../../UI/Backdrop/Backdrop'
 import Aux from '../../../hoc/Aux/Aux';
 
-const sideDrawer = ({open, closed}) => {
+const sideDrawer = ({open, closed, isAuth}) => {
     let attachedClasses = [SideDrawer, Close];
     if (open) {
         attachedClasses = [SideDrawer, Open];
@@ -19,7 +19,7 @@ const sideDrawer = ({open, closed}) => {
                     <Logo/>
                 </div>
                 <nav>
-                    <NavigationItems/>
+                    <NavigationItems isAuth={isAuth} />
                 </nav>
             </div>
         </Aux>

@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationItems } from './NavigationItems.css'
 import NavigationItem from './NavigationItem/NavigationItem';
 
-const navigationItems = () => (
+const navigationItems = ({isAuth}) => (
     <ul className={NavigationItems} >
         <NavigationItem
             link='/'
@@ -11,9 +11,13 @@ const navigationItems = () => (
         <NavigationItem
             link='/orders'
         >Orders</NavigationItem>
-        <NavigationItem
-            link='/auth'
-        >Authenticate</NavigationItem>
+        
+        {
+            !isAuth ? <NavigationItem link='/auth' > Authenticate</NavigationItem>
+                : <NavigationItem link='/logout' > Logout</NavigationItem>
+        }
+        
+        
     </ul>
 );
 
