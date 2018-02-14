@@ -23,7 +23,7 @@ class App extends Component {
         <Route exact path='/' component={BurgerBuilder}/>
         <Redirect to='/' />
       </Switch>
-    )
+    );
 
     if (this.props.isAuth) {
       routes = (
@@ -35,7 +35,8 @@ class App extends Component {
           <Redirect to='/' />
         </Switch>
       )
-    }
+    };
+    
     return (
         <div>
           <Layout>
